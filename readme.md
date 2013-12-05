@@ -11,7 +11,7 @@ http://sphinxsearch.com/blog/2010/04/25/sphinxapi-vs-sphinxql-benchmark/
 
 Add `mnshankar/sphinxql` to `composer.json`.
 ```json
-    "mnshankar/sphinxql": "dev-master"
+    "mnshankar/sphinxql": "1.0"
 ```    
 Run `composer update` to pull down the latest version of Sphinxql. Note that Sphinxql has a 
 dependency on 'FoolCode/SphinxQL-Query-Builder', which does much of the weight lifting 
@@ -105,7 +105,7 @@ Blog::created(function($model){
 	$qins = SphinxQL::query()->insert()->into('rt_test');
 	$qins->set(array('id'=>99, 'title'=>'My Title', 'content'=>'My Content', 'gid'=>444))->execute();
 });
-``
+```
 Similarly, Replace and delete can be easily handled like so:
 
 ```php
@@ -113,12 +113,12 @@ Blog::updated(function($model){
 	$qrepl = SphinxQL::query()->replace()->into('rt_test');
 	$qrepl->set(array('id'=>99, 'title'=>'My Title', 'content'=>'My Content', 'gid'=>444))->execute();
 });
-``
+```
 ```php
 Blog::deleted(function($model){
 	SphinxQL::query()->delete()->from('rt_test')->where('id',99)->execute();
 });
-``
+```
 A search query can be constructed as:
 ```php
 $q = SphinxQL::query()->select()->from('rt_test')->match('content', 'test');
@@ -164,13 +164,13 @@ The "get()" function has the following signature:
 ```php
 public function get($name=null, $key='id')
 ``` 
-where $name is either
-1. null
-	The function simply returns an array of ID's
-2. An eloquent model
-	The function returns an EloquentCollection containing table rows matching the ids
-3. A string representing a table name
-	The function returns an array of rows from the table specified (using DB::table('name'))
+where $name is either:
+
+1. null - The function simply returns an array of ID's
+
+2. An eloquent model - The function returns an EloquentCollection containing table rows matching the ids
+
+3. A string representing a table name - The function returns an array of rows from the table specified (using DB::table('name'))
 
 The $key parameter can be used to change the primary key column name (defaults to 'id')
 
