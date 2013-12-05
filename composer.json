@@ -1,6 +1,7 @@
 {
     "name": "mnshankar/sphinxql",
-    "description": "",
+    "description": "Integrate SphinxQL with Laravel 4. Simplifies Laravel-Sphinx(RT) search",
+    "license":"MIT",
     "authors": [
         {
             "name": "Shankar Manamalkav",
