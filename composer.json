@@ -1,0 +1,21 @@
+{
+    "name": "mnshankar/sphinxql",
+    "description": "",
+    "authors": [
+        {
+            "name": "Shankar Manamalkav",
+            "email": "mnshankar@yahoo.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x",
+        "foolz/sphinxql-query-builder": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "mnshankar\\Sphinxql": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
