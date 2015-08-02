@@ -159,7 +159,7 @@ $q = SphinxQL::query()->select()
 			->match('content', 'test')
 	       	->execute();
 	       	
-dd(Sphinx::with($q)->get('Blog'));	       	
+dd(SphinxQL::with($q)->get('Blog'));	       	
 ```
 The first statement runs the query against the sphinx server and returns an array.
 
