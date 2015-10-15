@@ -42,13 +42,29 @@ class Sphinxql
             return $matchids;
         }        
         if (class_exists($name))
-        {            
-             $result = call_user_func_array($name . "::whereIn", array($key, $matchids))->get();          
-        }
-        else 
         {
-            $result = \DB::table($name)->whereIn($key, $matchids)->get();
-        }        
+            if ( empty($matchids) )
+            {
+                // If no matched ids don't bother doing a query, just return an empty collection.
+                $result = new \Illuminate\Database\Eloquent\Collection();
+            }
+            else
+            {
+                $result = call_user_func_array($name . "::whereIn", array($key, $matchids))->orderByRaw(\DB::raw('FIELD(`' . $key . '`, ' . implode(',', $matchids) . ')'))->get();
+            }
+        }
+        else
+        {
+            if ( empty($matchids) )
+            {
+                // If no matched ids don't bother doing a query, just return an empty array..
+                $result = array();
+            }
+            else
+            {
+                $result = \DB::table($name)->whereIn($key, $matchids)->orderByRaw(\DB::raw('FIELD(`' . $key . '`, ' . implode(',', $matchids) . ')'))->get();
+            }
+        }    
         return $result;
     }    
     /**
